@@ -1,11 +1,13 @@
 import numpy as np 
 import sys
 
-training_subj_list_file = sys.argv[1]
+## Make changes here primarily directories 
+training_subj_list_file = sys.argv[1] # Give the name for the list of training subjects
+out_dir = sys.argv[2] # stores output data 
 
-fiber_grps_file = './fiber_groups_reduced.txt'
-base_dir = '/ifs/loni/faculty/thompson/four_d/Faisal/Projects/NeuralNet_TBI/AD_DOD_vol_param/'  
-sub_dir = '/NewResults/Mapped_tracks/Tracks_text_files/'
+base_dir = sys.argv[3]
+sub_dir = sys.argv[4]
+fiber_grps_file = sys.argv[5]# I store the file containing the fiber groups in the same directory but you can change it 
 
 
 def readSingleFile(fileName):
@@ -31,10 +33,15 @@ def readSingleFile(fileName):
 
 fid_fiber_grps = open(fiber_grps_file, 'r')
 fiber_grps = fid_fiber_grps.readlines()
+num_groups = len(fiber_grps)
 
 ##Read list of training subjs 
 fid_training_subj = open(training_subj_list_file, 'r')
 training_subj_list = fid_training_subj.readlines()
+
+
+ALL_TRAINING_FIBERS=np.zeros([1,150])
+ALL_TRAINING_LABELS = np.zeros([1, num_groups])
 
 for subj in training_subj_list:
     data_dir = base_dir + subj.strip('\n') + sub_dir
@@ -62,5 +69,20 @@ for subj in training_subj_list:
 
     file_name_labels = data_dir + 'All_labels.npy'
     np.save(file_name_labels, ALL_LABELS)    
+    
+    ALL_TRAINING_FIBERS = np.row_stack((ALL_TRAINING_FIBERS, ALL_FIBERS))
+    ALL_TRAINING_LABELS = np.row_stack((ALL_TRAINING_LABELS, ALL_LABELS))
+
+
+ALL_TRAINING_FIBERS = np.delete(ALL_TRAINING_FIBERS, 0, axis = 0)
+ALL_TRAINING_LABELS = np.delete(ALL_TRAINING_LABELS, 0, axis = 0)
+
+file_name_labels = out_dir + 'All_training_labels.npy'
+file_name_fibers = out_dir + 'All_training_fibers.npy'
+
+if not os.path.exists(out_dir):
+    os.makedirs(out_dir)
+np.save(file_name_fibers, ALL_TRAINING_FIBERS)
+np.save(file_name_labels, ALL_TRAINING_LABELS)
 
 
