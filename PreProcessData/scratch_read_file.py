@@ -1,5 +1,7 @@
 import numpy as np 
 import sys
+import os 
+
 
 ## Make changes here primarily directories 
 training_subj_list_file = sys.argv[1] # Give the name for the list of training subjects
