@@ -1,5 +1,5 @@
-base_dir=/ifs/loni/faculty/thompson/four_d/Faisal/Projects/NeuralNet_TBI/AD_DOD_vol_param/
-out_dir=/ifs/loni/faculty/thompson/four_d/Faisal/Projects/NeuralNet_TBI/AD_DOD_vol_param/Training_data_new/
+base_dir=/home/rcf-proj2/vg/Data/AD_DOD/TrainingData
+out_dir=${base_dir}
 #sub-directory within the subject directory 
 sub_dir=/NewResults/Mapped_tracks/Tracks_text_files/
 
