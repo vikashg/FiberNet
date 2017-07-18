@@ -1,0 +1,17 @@
+atr_l
+atr_r
+cc_frontal
+cc_occipital
+cc_parietal
+cc_temporal
+cgc_l
+cgc_r
+cst_l
+cst_r
+ifo_l
+ifo_r
+ilf_l
+ilf_r
+slf_l
+unc_l
+unc_r
