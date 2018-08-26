@@ -1,0 +1,14 @@
+1. First use the PreProcessdata folder. 
+It creates the train test validation split on the data and also save it in the numpy format so it is easier to read. 
+
+2. Second train the network the training the model. 
+There are 3 models essentially 
+(a) Conv 16-32 followed by 64-128 nodes
+(b) Conv 8-16 followed by 32-64 nodes
+
+3. Predict the results from the trained models: Depending on the training config, use the appropriate model for prediction using the submission scripts 
+
+Once the prediction is done, you will end with text files numbered 1 or 0, 1 being the label for correct fiber and 0 being the label for incorrect fibers. 
+
+Now go back to the volumetric parameterization folder and run Predict_fibers., which will give you the classification. 
+Congratulations 
